@@ -4,6 +4,31 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+function likeAction(element){
+  mimicServerCall()
+  .then(()=> {
+    element.target.className = "activated-heart";
+    element.target.innerText = FULL_HEART})
+  .catch(()=> {
+    console.log("failure")
+    const note = document.querySelector("h2")
+    console.log(note)
+    note.className = "";
+    setTimeout(()=>{
+      note.className = "hidden"
+    }, 3000)
+  })
+  //console.log("I was clicked") 
+}
+
+const collection = document.querySelectorAll(".like-glyph")
+
+collection.forEach(function(element){
+  element.addEventListener("click", likeAction);
+  console.log(element)
+})
+
+
 
 
 
